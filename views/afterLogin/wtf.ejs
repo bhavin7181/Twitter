@@ -1,0 +1,25 @@
+<div class="wtf-container box-border white-bg" ng-controller="who-to-follow" ng-init="loadSuggestions('<%=username%>')">
+			<div class="wtf">
+				<div class="wtf-header">
+					<h3>Who to follow</h3>
+					<!-- <small>&middot;</small>
+					<small>Refresh</small> -->
+				</div>
+			</div>
+			<div ng-repeat="ff in followSuggestions">
+				<div class="clearfix margin-bottom">
+				     <img class="pull-left default-img" src="../images/default-pic.png">
+				     <div class="tweet-content">
+				        <a class="getuserlink" href="/getUserPage?username={{ff.user_name}}">
+				        <span class="tweetby-full-name">{{ff.full_name}}</span>
+				        </a>
+				        <a class="getuserlink" href="/getUserPage?username={{ff.user_name}}">
+				        <span class="tweetby-handle">@{{ff.user_name}}</span></a></div>
+				        <p class="tweet-text tweet-content">
+				         <button type="button" id="follow_{{ff.user_name}}" ng-click="follow(ff.user_name)" class="btn btn-default btn-sm">
+				          <span class="glyphicon glyphicon-user gcolor"></span>  &nbsp;&nbsp;Follow 
+				        </button>
+				        </p>
+				      </div>
+		    </div>
+			</div>

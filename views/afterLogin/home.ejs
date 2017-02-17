@@ -1,0 +1,72 @@
+<script src="/angularjs/afterLogin.js"></script>
+<%- include('../afterLogin/topMenu_afterLogin') %>
+<div class="main-container container-fluid" ng-app="main">
+	<div class="rows">
+		<div class="col-md-3">
+			<div class="personal box-border bottom-space white-bg">
+				<div class="personal-header ph-border">
+				<!-- <div class="user-box-border-small profile-pic-small"></div> -->
+				<div class="user-box-border-small profile-pic-small">
+					<img src="../../images/pic.png"/>
+				</div>
+				</div>
+				
+				<div class="user-details" ng-controller="user-controller" ng-init="getUserDetails('<%=username%>')">
+					<div>
+					  <div class="rows">
+						<div class="col-md-12">					  
+						<h3><a href="/getUserPage?username=<%=session1.username%>"><%=session1.full_name%></a></h3>
+			      		<h5><a href="/getUserPage?username=<%=session1.username%>">@<%=session1.username%></a></h5>
+			      		</div>
+			      	  </div>
+				      <div class="rows">
+						<div class="col-md-4">
+							<div class="user-menu-label">Tweets</div>
+							<a href="/getUserPage?username=<%=session1.username%>&clicked=tweets" class="decorationNone"><span class="count" ng-bind-html="tweet"></span></a>
+						</div>
+						<div class="col-md-4">
+							<div class="user-menu-label">Following</div>
+							<a href="/getUserPage?username=<%=session1.username%>&clicked=following" class="decorationNone"><span class="count" ng-bind-html="following"></span></a>
+							<!-- <div class="count" ng-bind-html="following"></div> -->
+						</div>
+						<div class="col-md-4">
+							<div class="user-menu-label">Followers</div>
+							<a href="/getUserPage?username=<%=session1.username%>&clicked=followers" class="decorationNone"><span class="count" ng-bind-html="follower"></span></a>
+							<!-- <div class="count" ng-bind-html="follower"></div> -->
+						</div>
+					  </div>
+				    </div>
+				</div>
+			</div>
+			<!-- <div class="box-border bottom-space">
+				dssddsd
+			</div> -->
+		</div>
+		<div class="col-md-6">
+		<div class="box-border">
+			<div class="middle-div white-bg tweet-box">
+				<div class="">
+					<div class="container-fluid" ng-controller="tweet_t1">
+						<div class="field">
+							<textarea id="tweet_t" onkeyup="countChar(this,'char-count')" rows="3" ng-model="tweet_t" type="text" autocomplete="off" value="" name="tweet_t" maxlength="140" aria-required="true" placeholder="What's happening?" class="form-control"></textarea>
+						</div>
+						<div class="pull-right">
+							<span id="char-count">140</span>
+							<input type="button" class="tweet-btn btn" value="Tweet" ng-click="postTweet()"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="" ng-controller="tweet-loader">
+			<div id="tweets-div" ng-init="loadTweets('<%=username%>')">
+				<div id="tweet_c"></div>
+		</div>
+		</div>
+		</div></div>
+		<div class="col-md-3">
+			<%- include('wtf')%>
+		</div>
+		</div>	
+	</div>
+
+<%- include('modal-popups')%>

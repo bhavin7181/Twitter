@@ -1,0 +1,10 @@
+angular.isUndefinedOrNull = function(val) {
+    return angular.isUndefined(val) || val === null ;
+}
+
+function htmlDecode(input){
+    var e = document.createElement('div');
+    e.innerHTML = input;
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+}
+

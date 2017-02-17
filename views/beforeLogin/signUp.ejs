@@ -1,0 +1,122 @@
+<script src="/angularjs/beforeLogin.js"></script>
+<%- include('topMenu_signUp') %>
+ 
+<div class="signup-page-container" ng-app="signup">
+	<div id="signup-main-bar-outer" ng-controller="signup-controller"  class="signup-main-bar-outer-c container">
+		<div ng-hide="signupbox" class="rows" ng-init="init()">
+	  		<div class="col-md-4"></div>
+	  		<div class="col-md-4">
+	  			<div class="field-wrapper">
+			        <div class="field">
+			  			<h2>Join Twitter today.</h2>
+		        	</div>
+		        </div>
+				<div class="field-wrapper">
+			        <div class="field">
+			            <input id="full-name" type="text" autocomplete="off" value="" ng-model="fullname" name="fullname1" maxlength="500" aria-required="true" placeholder="Full name" class="form-control">
+		            </div>
+	            </div>
+	            <div class="field-wrapper">
+			        <div class="field">
+			            <input id="user-name" type="text" autocomplete="off" value="" ng-model="username" name="username1" maxlength="45" aria-required="true" placeholder="User name" class="form-control">
+		            </div>
+	            </div>
+	            <div class="field-wrapper">
+			        <div class="field">
+			            <input id="email_" type="text" autocomplete="off" value="" ng-model="email" name="email" maxlength="150" aria-required="true" placeholder="email" class="form-control">
+		            </div>
+	            </div>
+	            <div class="field-wrapper">
+			        <div class="field">
+			            <input id="password" type="password" autocomplete="off" value="" ng-model="password" name="password" maxlength="400" aria-required="true" placeholder="Password" class="form-control">
+		            </div>
+	            </div>
+	            
+	            <div class="field-wrapper">
+				  <label class="field-label">
+				    <input type="checkbox" checked="checked" name="personalize" value="1">
+				    <span class="tailor">Tailor Twitter based on my recent website visits.</span>
+				  </label>
+				</div>
+	            
+	            <div class="field-wrapper">
+			        <div class="field">
+			            <input role="button" type="button" ng-click="signup()" class="btn signup-button" value="Sign Up"/>
+		            </div>
+	            </div>
+	  	<div class="terms">
+		  <p>By signing up, you agree to the <a href="#" class="terms-link" target="_blank">Terms of Service</a> and <a href="/privacy" class="terms-link" target="_blank">Privacy Policy</a>, including <a href="#" class="legal-link" target="_blank">Cookie Use</a>. Others will be able to find you by email or phone number when provided.</p>
+		</div>
+	</div>
+  	<div class="col-md-4 signup-box-margin">
+  			<div class="field-wrapper">
+		        <div class="field empty-div">
+		  			
+	        	</div>
+	        </div>
+  			<div class="field-wrapper">
+		        <div class="field min-height-40">
+			        <div class="custom-alert alert-color" ng-hide="fullname_req">
+		            		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;Full Name is required
+		        	</div>
+		        </div>
+	        </div>
+			<div class="field-wrapper">
+		        <div class="field min-height-50">
+	        		<div class="custom-alert alert-color" ng-hide="username_req">
+	            		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;User name is required
+	        		</div>
+	        		<div class="custom-alert alert-color" ng-hide="username_reg">
+	            		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;This User name is already registered!
+	        		</div>
+	        	</div>
+	        	<div class="field min-height-50">
+	        		<div class="custom-alert alert-color" ng-hide="email_req">
+	            		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;Email is required
+	        		</div>
+	        		<div class="custom-alert alert-color" ng-hide="email_reg">
+	            		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;This email is already registered. Want to <span class="gcolor"><a href="/signInPage">login</a></span>?
+	        		</div>
+	        		<div class="custom-alert alert-color" ng-hide="email_invalid">
+	            		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;Please enter a valid email.
+	        		</div>
+	        	</div>
+	        	<div class="field">
+		            <div class="custom-alert alert-color" ng-hide="password_req">
+		            	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;Password is required
+		            </div>
+		            <div class="custom-alert alert-color" ng-hide="password_len">
+		            	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;Your password must be at least 6 characters.
+		            </div>
+	            </div>
+	        </div>
+	        
+	        <div class="field-wrapper">
+		        <div class="field"></div>
+            </div>
+		</div>
+</div>
+		<div ng-hide="creation">
+			<div class="rows">
+		 		<div class="col-md-4"></div>
+		 		<div class="col-md-4">
+			  		<div class="processing-text clearfix creation">
+						<h3>Creating your account...</h3>					    
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
+<script>
+$(function() {
+	  // Setup drop down menu
+	  $('.dropdown-toggle').dropdown();
+	 
+	  // Fix input element click problem
+	  $('.dropdown input, .dropdown label').click(function(e) {
+	    e.stopPropagation();
+	    e.preventDefault();
+	  });
+	});
+</script>

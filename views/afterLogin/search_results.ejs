@@ -1,0 +1,53 @@
+<script src="/angularjs/afterLogin.js"></script>
+<%- include('../afterLogin/topMenu_afterLogin') %>
+<div class="search-header">
+<h1 class="search-title"><%=search_query%></h1>
+</div>
+
+<div class="main-container container-fluid"><br/>
+<div class="all-tweets clearfix">
+	<div class="rows">
+	<div class="col-md-3"></div>
+    <div class="col-md-6">
+		<div class="box-border">
+			<div class="tweets-div">
+				<div id="tweet_c">
+				<%if(searched_tweets.length!=0) {%>
+					<% for(var i=0; i< searched_tweets.length; i++) {%>
+					     <div class="all-tweets tweet-border clearfix">
+					     <img class="pull-left default-img" src="../images/default-pic.png">
+					     <div class="tweet-content">
+					        <a class="getuserlink" href="/getUserPage?username=bhavin">
+					        <span class="tweetby-full-name"><%=searched_tweets[i].full_name%></span>
+					        <span class="tweetby-handle">@<%=searched_tweets[i].user_name%></span></a></div>
+					        <p class="tweet-text tweet-content"><%=searched_tweets[i].twit%></p>
+					        <div class="parent-tweet">
+					        <% if (searched_tweets[i].user_name == session1.username) {%>
+					        <a href="#"><span class="glyphicon glyphicon-new-window user-action-disabled"></span></a>
+					        <a href="#" class="retweet-anchor" id="<%=searched_tweets[i].parent_tweet_id%>" data-toggle="modal"><span class="glyphicon glyphicon-retweet user-action-disabled"></span></a>
+					        <%} else { %>
+					        <a href="#"><span class="glyphicon glyphicon-new-window user-action"></span></a>
+					        <a href="#" class="retweet-anchor" id="<%=searched_tweets[i].parent_tweet_id%>" data-toggle="modal" onclick="manageRetweet(this)">
+					        <span class="glyphicon glyphicon-retweet user-action"></span></a>
+					        <% } %>
+						    <a href="#"><span class="glyphicon glyphicon-heart user-action heart"></span></a>
+					        </div>
+				        </div>
+					<% } %>
+				<%}else{%>
+				<div class="all-tweets tweet-border clearfix align-center">No results.</div>
+				<%}%>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+		<!-- <div class="col-md-3">
+			<div class="box-border white-bg">
+				right		
+			</div>
+		</div> -->	
+	</div>
+</div>
+</div>
+<%- include('modal-popups')%>

@@ -1,0 +1,79 @@
+<script src="/angularjs/beforeLogin.js"></script>
+<%- include('topMenu_signIn') %>
+ 
+<div class="signin-page-container" ng-app="signin" ng-controller="signin-controller">
+<!-- <form id="signin-main-form" role="form" method="POST" action="/create" class="signin-main-form-c form-group"> -->
+	<div id="signin-main-bar-outer" class="signin-main-bar-outer-c container">
+	<!-- <div class="rows">
+		<div class="col-md-4"></div>
+		<div class="col-md-4 signin-box" style="margin-top: 5%">
+			
+		</div>
+		<div class="col-md-4"></div>
+	</div> -->
+	<div class="rows">
+	  		<div class="col-md-4"></div>
+	  		<div class="col-md-4">
+	  		<div class="signin-error">
+	  		<div class="invalid-login" ng-hide="invalid_login">
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;The username and password do not match.
+			</div>
+			<div class="invalid-login" ng-hide="unexpected_error">
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;Unexpected_error occurred. 
+			</div>
+			</div>
+			<div class="signin-box signin-box-margin">
+	  			<div class="field-wrapper">
+			        <div class="field">
+			  			<h2>Login to Twitter.</h2>
+		        	</div>
+		        </div>
+				<div class="field-wrapper">
+			        <div class="field">
+	        			<input id="username" type="text" autocomplete="off" value="" ng-model="username" name="username" maxlength="20" aria-required="true" placeholder="Phone, email or username" class="form-control">	
+		        	</div>
+		        	<div class="field">
+			            <input id="password" type="password" autocomplete="off" value="" ng-model="password" name="password" maxlength="20" aria-required="true" placeholder="Password" class="form-control">
+			            <div class="forgot-pwd">
+					        <a class="forgot" href="#">Forgot password?</a>
+			            </div>
+		            </div>
+		        </div>
+		        
+		        <div class="field-wrapper">
+			        <div class="field">
+				        <input type="submit" role="button" class="btn btn-success signin-button" ng-click="submit();" value="Login" />
+				            <br/>
+				            <div class="signup-text">
+					            Don't have an account?<a class="signup-link" href="/signUpPage">Sign up</a>
+					        </div>
+		            </div>
+	            </div>
+		</div>
+		</div>
+ 		<div class="col-md-4 sigin-box-margin">
+  			<div class="field-wrapper">
+		        <div class="field"></div>
+	        </div>
+			<div class="field-wrapper">
+		        <div class="field">
+	        		<div class="alert" ng-hide="NAME_REQ">
+	            		<span class="glyphicon glyphicon-exclamation-sign glyphicon-exclamation-sign-yellow"></span>&nbsp;Email or Phone is required
+	        		</div>
+	        	</div>
+	        	<div class="field">
+		            <div class="alert" ng-hide="PWD_REQ">
+		            	<span class="glyphicon glyphicon-exclamation-sign glyphicon-exclamation-sign-yellow"></span>&nbsp;Password is required
+		            </div>
+	            </div>
+	        </div>
+	        
+	        <div class="field-wrapper">
+		        <div class="field"></div>
+            </div>
+		</div>
+  	</div>
+	</div>
+</div>
+  	
+	

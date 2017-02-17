@@ -1,0 +1,143 @@
+<script src="/angularjs/afterLogin.js"></script>
+<%- include('../afterLogin/topMenu_afterLogin') %>
+<div ng-app="main">
+<div class="user-top"></div>
+<div class="menu-container">
+<div class="">
+	<nav class="navbar navbar-default">
+	<input type="hidden" id="clicked_input" value="<%=clicked%>"/>
+		  <div class="container-fluid" ng-controller="menu-controller" ng-init="init('<%=username%>')">
+		  <div class="rows">
+		  	<div class="col-md-3"></div>
+		  	<div class="col-md-9 nav-padding">
+		  	<ul class="nav navbar-nav cursor-pointer">
+		  	
+		      <li class="<%=clicked=='tweets' || clicked==''?'active-border':''%> make-inactive align-center" id="tweets_li"><a ng-click="loadMyTweets('<%=username%>')"><div class="user-menu-label">Tweets</div><div class="count" ng-bind-html="tweet"></div></a></li>
+		      <li class="<%=clicked=='following' || clicked==''?'active-border':''%> align-center make-inactive" id="following_li"><a id="following_anchor" ng-click="loadFollowing('<%=username%>')"><div class="user-menu-label">FOLLOWING</div><div class="count" ng-bind-html="following"></div></a></li>
+		      <li class="<%=clicked=='followers' || clicked==''?'active-border':''%> align-center make-inactive" id="followers_li"><a ng-click="loadFollowers('<%=username%>')"><div class="user-menu-label">FOLLOWERS</div><div class="count" ng-bind-html="follower"></div></a></li> 
+		    </ul>
+		    <div class="pull-right">
+		    <% if(username==session1.username) {%>					  
+			<input type="button" class="tweet-btn user-edit" value="Edit Profile"  data-toggle="modal" data-target="#user-modal-popup"/>
+			<%}%>
+		    </div>
+		  </div>
+		  </div>
+		  </div>
+	</nav>
+</div>
+
+<div class="profile-pic user-box-border" ng-controller="personalinfo1c">
+	<div class="user-personal-details" ng-init="loadPersonalInfo('<%=username%>')">
+	  <div class="rows">
+		<div class="col-md-12">
+		<% if(username==session1.username) {%>					  
+			<h3><a href="/getUserPage?username=<%=username%>"><%=session1.full_name%></a></h3>
+		<%} else {%>
+			<h3><a href="/getUserPage?username=<%=username%>"><%=full_name%></a></h3>
+		<% } %>
+     		<h5><a href="/getUserPage?username=<%=username%>">@<%=username%></a></h5>
+   		</div>
+   	  </div>
+      <div class="rows">
+		<div class="col-md-12">
+			<div id="user-joining" class="user-sub-details"><span class="glyphicon glyphicon-calendar"><span class="p-text" ng-bind-html="joining_span"></span></span></div>
+			<div id="user-location" class="user-sub-details"><span class="glyphicon glyphicon-map-marker"><span class="p-text" ng-bind-html="location_span"></span></span></div>
+			<div id="user-birthday"  class="user-sub-details"><span class="glyphicon glyphicon glyphicon-gift"><span class="p-text" ng-bind-html="birthday_span"></span></span></div>
+			<div id="user-phone"  class="user-sub-details"><span class="glyphicon glyphicon glyphicon-phone"><span class="p-text" ng-bind-html="phone_span"></span></span></div>
+		</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="main-container container-fluid">
+	<div class="rows">
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-6" id="tweet-box">
+			<div class="box-border user-home-tweet">
+				<div class="middle-div">
+					<div class="user-home-tweet-title">
+						Tweets
+					</div>
+				</div>
+				<div class="" ng-controller="tweet-loader">
+				<div id="tweets-div"><!--  ng-init="loadTweets('<%=username%>')"  -->
+					<div id="tweet_c"></div>
+				</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3" id="user-home-wtf">
+			<%- include('wtf')%>
+		</div>
+		<div class="col-md-9 padding-zero" id="ff-box" ng-controller="ff">
+			 <div ng-repeat="ff1 in following_list" id="following-box">
+				<div class="col-md-4 padding-zero">
+				<div class="ff-personal box-border bottom-space white-bg">
+				<div class="ff-personal-header ff-ph-border">
+				<!-- <div class="user-box-border-small profile-pic-small"></div> -->
+				<div class="ff-user-box-border-small ff-profile-pic-small">
+					<img src="../../images/pic.png"/>
+				</div>
+				</div>
+				<div class="ff-btn-div">
+				<!-- <input type="button" class="ff-btn tweet-btn" ng-if = "arrayflags1[$index]==true" value="FOLLOWING"/>
+				<input type="button" class="ff-btn tweet-btn" ng-if = "(arrayflags1[$index]!=true && arrayflags1[$index]!=false) || arrayflags1[$index]==false" id="follow_{{ff1.user_name}}" ng-click="follow(ff1.user_name)" value="FOLLOW"/> -->
+				<input type="button" class="ff-btn tweet-btn" onclick="" value="FOLLOWING"/>
+				</div>
+				
+				<div class="ff-user-details">
+					<div>
+					  <div class="rows">
+						<div class="col-md-12">					  
+						<h3><a href="/getUserPage?username={{ff1.user_name}}">{{ff1.full_name}}</a></h3>
+			      		<h5><a href="/getUserPage?username={{ff1.user_name}}">@{{ff1.user_name}}</a></h5>
+			      		</div>
+			      	  </div>
+			      	 </div>
+			     </div>
+				</div>
+			  </div>
+		 	</div>
+		 	
+		 	<div ng-repeat="ff1 in followers_list" id="followers-box">
+				<div class="col-md-4 padding-zero">
+				<div class="ff-personal box-border bottom-space white-bg">
+				<div class="ff-personal-header ff-ph-border">
+				<!-- <div class="user-box-border-small profile-pic-small"></div> -->
+				<div class="ff-user-box-border-small ff-profile-pic-small">
+					<img src="../../images/pic.png"/>
+				</div>
+				</div>
+				<!-- <div class="ff-btn-div">
+				<input type="button" class="ff-btn tweet-btn" onclick="" value="FOLLOWING"/>
+				</div> -->
+				<div class="ff-btn-div">
+					<input type="button" class="ff-btn tweet-btn" ng-if = "arrayflags1[$index]==true" value="FOLLOWING"/>
+					<input type="button" class="ff-btn tweet-btn" ng-if = "arrayflags1[$index]==false" id="follow_{{ff1.user_name}}" ng-click="follow(ff1.user_name)" value="FOLLOW"/> 
+				</div>
+				
+				<div class="ff-user-details">
+					<div>
+					  <div class="rows">
+						<div class="col-md-12">					  
+						<h3><a href="/getUserPage?username={{ff1.user_name}}">{{ff1.full_name}}</a></h3>
+			      		<h5><a href="/getUserPage?username={{ff1.user_name}}">@{{ff1.user_name}}</a></h5>
+			      		</div>
+			      	  </div>
+			      	 </div>
+			     </div>
+				</div>
+			  </div>
+		 	</div>
+		 </div>
+		<!-- <div class="col-md-3" >
+			<div class="box-border white-bg">
+				right		
+			</div>
+		</div>	 -->
+	</div>
+</div>
+</div>
+<%- include('modal-popups')%>

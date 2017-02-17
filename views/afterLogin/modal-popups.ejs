@@ -1,0 +1,111 @@
+
+<div id="tweetsuccess" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Success</h4>
+      </div> -->
+      <div class="modal-body" style="text-align:center">
+        <span id="modal-text"></span>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<div id="tweet-modal-popup" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="text-align: center">Compose new Tweet</h4>
+      </div>
+      <div class="modal-body tweet-box align-center">
+        <div id="modal-text">
+        	<div class="container-fluid">
+				<div class="field">
+					<textarea id="tweet_t_modal" onkeyup="countChar(this,'char-count-modal')" rows="3" ng-model="tweet_t" type="text" autocomplete="off" value="" name="tweet_t" maxlength="140" aria-required="true" placeholder="What's happening?" class="form-control"></textarea>
+				</div>
+				<div class="pull-right">
+					<span id="char-count-modal">140</span>
+					<input type="button" class="tweet-btn btn" value="Tweet" onclick="postTweetFromModal()"/>
+				</div>
+			</div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<div id="retweet-modal-popup" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="text-align: center">Retweet this to your followers?</h4>
+      </div>
+      
+      <div class="modal-body tweet-box align-center">
+      <div id="current-tweet-id" class="hidden"></div>
+        <div id="modal-text">
+        	<div class="container-fluid">
+				<div class="field">
+						<textarea id="retweet_t_modal" onkeyup="countChar(this,'retweet-char-count-modal')" rows="3" ng-model="retweet_t" type="text" autocomplete="off" value="" name="retweet_t" maxlength="140" aria-required="true" placeholder="Add a comment..." class="form-control"></textarea>
+				</div>
+				<div class="pull-right">
+					<span id="retweet-char-count-modal">140</span>
+					<button class="tweet-btn btn" value="Tweet" onclick="postReTweetFromModal()">
+						<span class="glyphicon glyphicon-retweet"></span> Retweet
+					</button>
+				 </div>
+			</div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+
+<div id="user-modal-popup" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="text-align: center">Edit Profile</h4>
+      </div>
+      <div class="modal-body tweet-box align-center">
+        <div id="">
+        	<div class="container-fluid">
+        	<form role="form" id="profileform" name="profileform">
+        		<div class="field">
+					<input id="full-name" required="required" type="text" autocomplete="off" value="<%=session1.full_name%>" name="fullname" maxlength="500" aria-required="true" placeholder="Full name" class="form-control">
+				</div>
+				
+				<div class="field">
+					<input id="location" type="text" autocomplete="off" value="" name="location" maxlength="150" aria-required="true" placeholder="Location" class="form-control">
+				</div>
+				<div class="field">
+					<input id="tel" type="number" autocomplete="off" value="" name="tel" maxlength="15" aria-required="true" placeholder="Phone number" class="form-control">
+				</div>
+				<div class="field">
+					<input id="birthday" type="date" autocomplete="off" value="" name="birthdate" maxlength="50" aria-required="true" placeholder="Full name" class="form-control">
+				</div>
+				<div class="pull-right">
+					<input type="button" class="tweet-btn btn" value="Save changes" onclick="saveProfile()">
+				</div>
+			</form>
+			</div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
